@@ -53,7 +53,21 @@ function makeTheCall() {
 // ================================================================
 
 
-
+$.ajax({
+    url: queryUrl,
+    method: "GET"
+  }).then(function(response) {
+    if (response.data.length > 1) {
+      for (var i = 1; i < 9; i++) {
+        var result = response.data;
+        var img = $("<img>");
+        var imgUrl = result[i].images.original.url;
+        img.attr("src", imgUrl);
+        $("#gifs").append(img);
+      }
+    }
+  });
+}
 
 
 
